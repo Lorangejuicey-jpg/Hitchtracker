@@ -1,32 +1,87 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Geolocation</title>
+    <title>HitchTracker</title>
     <link
+      href="https://fonts.googleapis.com/css?family=Poppins"
       rel="stylesheet"
-      href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css"
     />
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
-      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-      crossorigin="anonymous"
-    />
-    <link rel="stylesheet" href="../hackathon2/css/index.css" />
+    <link rel="stylesheet" href="./css/reset.css" />
+    <link rel="stylesheet" href="./css/index.css" />
   </head>
 
   <body>
-    <div class="fluid-container">
-      <div class="row border border-dark center header">
-        <h2>HitchTracker</h2>
+    <h1 class="heading">Hitch Tracker</h1>
+    <div class="container">
+      <div class="col first-col">
+        <form id="form">
+          <label class="form-label" for="">Huidige locatie:</label>
+          <input type="text" placeholder="Campusbaan 6, Nijmegen" id="start" />
+
+          <label class="form-label" for="">Eind locatie:</label>
+          <input
+            type="text"
+            placeholder="Heyendaalseweg 98, Nijmegen"
+            id="end"
+          />
+          <button class="submit-btn" type="button" onclick="route()">
+            Berekenen
+          </button>
+        </form>
       </div>
+      <div class="col second-col">
+        <div class="content">
+          <div class="sliders">
+            <span>€</span>
+            <label class="switch">
+              <input class="money-slider" type="checkbox" />
+              <span class="slider round"></span>
+            </label>
+            <span>$</span>
+            <span>KM</span>
+            <label class="switch">
+              <input class="distance-slider" type="checkbox" />
+              <span class="slider round"></span>
+            </label>
+            <span>Miles</span>
+          </div>
+          <div class="text-element">
+            <span>Totale afstand:</span>
+            <span id="total-distance" class="distance metric">0</span>
+          </div>
+          <div class="text-element">
+            <span>Huidige afstand:</span>
+            <span id="huidige-distance" class="distance metric">0</span>
+          </div>
+          <div class="text-element">
+            <span>Afgelegde afstand:</span>
+            <span id="afgelegde-distance" class="distance metric">0</span>
+          </div>
+          <div class="text-element">
+            <span>Huidige kosten:</span>
+            <span id="huidige-kosten" class="money metric">0</span>
+          </div>
+          <div class="text-element">
+            <span>Geschatte kosten:</span>
+            <span id="geschatte-kosten" class="money metric">0</span>
+          </div>
+          <h2 class="sub-heading">Totaal:</h2>
+          <div class="text-element">
+            <span>Afstand:</span>
+            <span id="afstand" class="distance metric">0</span>
+          </div>
+          <div class="text-element">
+            <span>Kosten:</span>
+            <span id="kosten" class="money metric">0</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="my-little-secret">
       <div class="row">
         <div class="col-lg-2 formHeight moveForm">
-          <form class="border border-dark" id="form">   <!-- form voor route-->
+          <form class="border border-dark" id="form">
+            <!-- form voor route-->
             <div class="formMargin">Route</div>
             <p class="formMargin">Van</p>
             <input class="form-control" type="text" id="start" />
@@ -40,35 +95,32 @@
               Verstuur
             </button>
           </form>
-          <div class="border border-dark">  <!-- route informatie-->
+          <div class="border border-dark">
+            <!-- route informatie-->
             <div id="KM" class="distance text">KM:</div>
             <div id="price" class="distance text">Prijs:</div>
             <div id="endPrice" class="distance text">Uiteindelijke kosten:</div>
           </div>
         </div>
-
-        <br />
-
         <div class="col-lg-3 border border-dark scroll top">
-            <div>Route</div>
-          <div id="routes"></div>   <!-- de route in tekst-->
+          <div>Route</div>
+          <div id="routes"></div>
+          <!-- de route in tekst-->
         </div>
         <div class="col-lg-6 top">
-          <div id="map" style="width: 100%; height: 85vh"></div><!-- map met de route-->
+          <div id="map" style="width: 100%; height: 85vh"></div>
+          <!-- map met de route-->
         </div>
       </div>
-      <div class="row">
-        <div class="col-lg-1"></div>
-        <div class="col-lg-2"></div>
-      </div>
     </div>
-    <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"></script>
-    <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.js"></script>
-    <script src="https://www.mapquestapi.com/sdk/leaflet/v2.2/mq-map.js?key=ug1kIMIPJ7K0W7qgHnMupAzBi1Ozxj2s"></script>
-    <script src="https://www.mapquestapi.com/sdk/leaflet/v2.2/mq-routing.js?key=ug1kIMIPJ7K0W7qgHnMupAzBi1Ozxj2s"></script>
-
-    <script src="../hackathon2/js/index.js">
-    </script>
   </body>
+  <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+  <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.js"></script>
+  <script src="https://www.mapquestapi.com/sdk/leaflet/v2.2/mq-map.js?key=tQdUky87HJekj8dSUyNNa1BIP2fkj65h"></script>
+  <script src="https://www.mapquestapi.com/sdk/leaflet/v2.2/mq-routing.js?key=tQdUky87HJekj8dSUyNNa1BIP2fkj65h"></script>
+
+  <script src="./js/index.js"></script>
+  <script src="./js/sliders.js"></script>
 </html>

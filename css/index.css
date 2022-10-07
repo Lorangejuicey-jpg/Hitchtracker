@@ -1,51 +1,190 @@
-body {  /* informatie op de rand van de pagina zetten en de scroll bar hiden */
-  margin: 0;
-  padding: 0;
-  overflow-x:hidden;
-
+:root {
+  --primary: #242331;
+  --secondary: #faff00;
+  --white: #f3f3f3;
+  --pm-font: poppins;
 }
-.center {
-  /* text in het midden van de header zetten */
-  align-content: center;
-  justify-content: center;
+textarea:focus,
+input:focus {
+  outline: none;
 }
-
-.formHeight {   /* form style zetten */
-  height: 300px;
-  width: 90%;
-  margin: auto;
+body {
+  background-color: var(--primary);
 }
-.formMargin {   /* ruimte tussen invoervelden */
-  margin-top: 15px;
+.heading {
+  font-family: var(--pm-font);
+  font-size: 2em;
+  color: var(--white);
+  text-align: center;
+  padding-top: 20px;
 }
-
-.buttonMargin { /* button van invoer veld verplaatsen */
-  margin-top: 30px;
+.sub-heading {
+  font-family: var(--pm-font);
+  font-size: 1.5em;
+  font-weight: bolder;
+  color: var(--primary);
+  padding-top: 20px;
 }
-
-.moveForm { /* form verplaatsen */
-  margin-top: 20px;
+.container {
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  max-width: 80%;
+  margin: auto;
+}
+@media only screen and (min-width: 1000px) {
+  .container {
+    max-width: 50%;
+  }
 }
 
-form {  /* padding voor form */
+/* Form styling */
+form {
+  display: flex;
+  flex-direction: column;
+}
+.form-label {
+  font-size: 20px;
+  color: var(--white);
+  font-family: var(--pm-font);
+  padding-top: 20px;
+  padding-bottom: 5px;
+}
+input[type="text"] {
+  background: none;
+  border: 2px solid var(--secondary);
+  padding: 20px;
+  border-radius: 3px;
+  font-size: 1.5rem;
+  color: var(--white);
+}
+input[type="text"]:focus {
+  border-color: #c9ce06;
+}
+.submit-btn {
+  font-size: 1.5em;
+  color: var(--primary);
+  background-color: var(--secondary);
+  border: none;
+  font-family: var(--pm-font);
+  margin-top: 40px;
   padding: 10px;
+  border-radius: 3px;
+}
+/* Slider */
+.sliders {
+  display: flex;
+  padding-bottom: 30px;
+}
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+  margin: 0 6px;
 }
 
-.route{ /* spacing tussen de teksten van de route */
-    gap:5px;
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
 }
 
-.scroll{    /* scroll bar displayen bij de div met de route */
-    height:630px;
-    overflow-y:auto;
-}
-.top{   /* divs lager op de pagina plaatsen */
-    margin-top:20px;
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 12px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--primary);
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  max-height: 25px;
 }
 
-.text{  /* tekst van km en prijs van de zijkant afhalen */
-    padding-left:3px;
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  left: 4px;
+  bottom: 3px;
+  background-color: var(--secondary);
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+input:checked + .slider {
+  background-color: var(--primary);
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px var(--primary);
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(36px);
+  -ms-transform: translateX(36px);
+  transform: translateX(36px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+.sliders span {
+  font-size: 20px;
+  font-family: var(--pm-font);
+  color: var(--primary);
+  padding-top: 13px;
+  padding-bottom: 5px;
+}
+.content {
+  background: var(--secondary);
+  margin-top: 50px;
+  padding: 20px;
+  border-radius: 3px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.sliders span:nth-of-type(2n) {
+  margin-right: 30px;
+}
+/* values */
+/* metric or burgers */
+span.money.metric::before {
+  content: "€";
+  margin-right: 3px;
+}
+span.distance.metric::after {
+  content: "KM";
+  margin-left: 3px;
+}
+
+span.money.burgers::before {
+  content: "$";
+  margin-right: 3px;
+}
+span.distance.burgers::after {
+  content: "Miles";
+  margin-left: 3px;
+}
+.text-element {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #b2b507;
+  padding-bottom: 8px;
+}
+.text-element span {
+  font-family: var(--pm-font);
+  font-size: 25px;
+}
+/********* Nothing to worry about trust me ;) *********/
+.my-little-secret {
+  display: none;
 }
