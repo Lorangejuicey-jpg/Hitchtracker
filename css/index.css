@@ -1,0 +1,51 @@
+body {  /* informatie op de rand van de pagina zetten en de scroll bar hiden */
+  margin: 0;
+  padding: 0;
+  overflow-x:hidden;
+
+}
+.center {
+  /* text in het midden van de header zetten */
+  align-content: center;
+  justify-content: center;
+}
+
+.formHeight {   /* form style zetten */
+  height: 300px;
+  width: 90%;
+  margin: auto;
+}
+.formMargin {   /* ruimte tussen invoervelden */
+  margin-top: 15px;
+}
+
+.buttonMargin { /* button van invoer veld verplaatsen */
+  margin-top: 30px;
+}
+
+.moveForm { /* form verplaatsen */
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+form {  /* padding voor form */
+  padding: 10px;
+}
+
+.route{ /* spacing tussen de teksten van de route */
+    gap:5px;
+}
+
+.scroll{    /* scroll bar displayen bij de div met de route */
+    height:630px;
+    overflow-y:auto;
+}
+.top{   /* divs lager op de pagina plaatsen */
+    margin-top:20px;
+}
+
+.text{  /* tekst van km en prijs van de zijkant afhalen */
+    padding-left:3px;
+}

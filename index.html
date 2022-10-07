@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Geolocation</title>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="../hackathon2/css/index.css" />
+  </head>
+
+  <body>
+    <div class="fluid-container">
+      <div class="row border border-dark center header">
+        <h2>HitchTracker</h2>
+      </div>
+      <div class="row">
+        <div class="col-lg-2 formHeight moveForm">
+          <form class="border border-dark" id="form">   <!-- form voor route-->
+            <div class="formMargin">Route</div>
+            <p class="formMargin">Van</p>
+            <input class="form-control" type="text" id="start" />
+            <p class="formMargin">Naar</p>
+            <input class="form-control" type="text" id="end" />
+            <button
+              class="buttonMargin float-right btn btn-info"
+              type="button"
+              onclick="route()"
+            >
+              Verstuur
+            </button>
+          </form>
+          <div class="border border-dark">  <!-- route informatie-->
+            <div id="KM" class="distance text">KM:</div>
+            <div id="price" class="distance text">Prijs:</div>
+            <div id="endPrice" class="distance text">Uiteindelijke kosten:</div>
+          </div>
+        </div>
+
+        <br />
+
+        <div class="col-lg-3 border border-dark scroll top">
+            <div>Route</div>
+          <div id="routes"></div>   <!-- de route in tekst-->
+        </div>
+        <div class="col-lg-6 top">
+          <div id="map" style="width: 100%; height: 85vh"></div><!-- map met de route-->
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-2"></div>
+      </div>
+    </div>
+    <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.js"></script>
+    <script src="https://www.mapquestapi.com/sdk/leaflet/v2.2/mq-map.js?key=ug1kIMIPJ7K0W7qgHnMupAzBi1Ozxj2s"></script>
+    <script src="https://www.mapquestapi.com/sdk/leaflet/v2.2/mq-routing.js?key=ug1kIMIPJ7K0W7qgHnMupAzBi1Ozxj2s"></script>
+
+    <script src="../hackathon2/js/index.js">
+    </script>
+  </body>
+</html>
